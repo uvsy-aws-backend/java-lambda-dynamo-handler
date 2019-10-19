@@ -1,4 +1,4 @@
-package com.universy.lambda.handlers.dynamo.consumers;
+package app.universy.lambda.handlers.dynamo.consumers;
 
 import java.util.function.Consumer;
 

@@ -1,12 +1,13 @@
-package com.universy.lambda.handlers.dynamo;
+package app.universy.lambda.handlers.dynamo;
 
+import app.universy.lambda.handlers.dynamo.exceptions.DynamoStreamConsumerException;
 import com.amazonaws.services.dynamodbv2.model.Record;
 import com.amazonaws.services.dynamodbv2.model.StreamRecord;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
-import com.universy.lambda.handlers.dynamo.consumers.DiscardConsumer;
-import com.universy.lambda.handlers.dynamo.typeresolver.DynamoDBRecordTypeResolver;
+import app.universy.lambda.handlers.dynamo.consumers.DiscardConsumer;
+import app.universy.lambda.handlers.dynamo.typeresolver.DynamoDBRecordTypeResolver;
 
 import java.util.function.Consumer;
 

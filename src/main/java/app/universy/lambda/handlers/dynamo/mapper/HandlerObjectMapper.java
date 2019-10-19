@@ -1,4 +1,4 @@
-package com.universy.lambda.handlers.dynamo.mapper;
+package app.universy.lambda.handlers.dynamo.mapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

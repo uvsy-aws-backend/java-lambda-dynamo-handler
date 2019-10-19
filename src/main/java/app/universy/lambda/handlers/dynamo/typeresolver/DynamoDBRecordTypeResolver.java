@@ -1,4 +1,4 @@
-package com.universy.lambda.handlers.dynamo.typeresolver;
+package app.universy.lambda.handlers.dynamo.typeresolver;
 
 import com.amazonaws.services.dynamodbv2.model.Record;
 

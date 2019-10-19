@@ -1,8 +1,8 @@
-package com.universy.lambda.handlers.dynamo.mapper;
+package app.universy.lambda.handlers.dynamo.mapper;
 
+import app.universy.lambda.handlers.dynamo.exceptions.DynamoStreamConsumerException;
 import com.amazonaws.services.dynamodbv2.document.ItemUtils;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.universy.lambda.handlers.dynamo.exceptions.DynamoStreamConsumerException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
