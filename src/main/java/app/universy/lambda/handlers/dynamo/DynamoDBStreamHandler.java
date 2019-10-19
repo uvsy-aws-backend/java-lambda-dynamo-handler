@@ -1,13 +1,14 @@
 package app.universy.lambda.handlers.dynamo;
 
-import app.universy.lambda.handlers.dynamo.exceptions.DynamoStreamConsumerException;
+import app.universy.lambda.handlers.dynamo.consumers.DiscardConsumer;
+import app.universy.lambda.handlers.dynamo.mapper.HandlerObjectMapper;
+import app.universy.lambda.handlers.dynamo.typeresolver.DynamoDBRecordTypeResolver;
 import com.amazonaws.services.dynamodbv2.model.Record;
 import com.amazonaws.services.dynamodbv2.model.StreamRecord;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
-import app.universy.lambda.handlers.dynamo.consumers.DiscardConsumer;
-import app.universy.lambda.handlers.dynamo.typeresolver.DynamoDBRecordTypeResolver;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.function.Consumer;
 
@@ -17,6 +18,12 @@ public abstract class DynamoDBStreamHandler<T> implements RequestHandler<Dynamod
 
     public DynamoDBStreamHandler() {
         discardConsumer = new DiscardConsumer();
+        ObjectMapper objectMapper = HandlerObjectMapper.getMapper();
+        configureMapper(objectMapper);
+    }
+
+
+    protected void configureMapper(ObjectMapper objectMapper) {
     }
 
     @Override
