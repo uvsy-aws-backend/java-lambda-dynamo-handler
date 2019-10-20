@@ -1,6 +1,7 @@
 package app.universy.lambda.handlers.dynamo;
 
 import app.universy.lambda.handlers.dynamo.consumers.DiscardConsumer;
+import app.universy.lambda.handlers.dynamo.mapper.DynamoItemMapper;
 import app.universy.lambda.handlers.dynamo.mapper.HandlerObjectMapper;
 import app.universy.lambda.handlers.dynamo.typeresolver.DynamoDBRecordTypeResolver;
 import com.amazonaws.services.dynamodbv2.model.Record;
@@ -9,10 +10,14 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.DynamodbEvent;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.function.Consumer;
 
 public abstract class DynamoDBStreamHandler<T> implements RequestHandler<DynamodbEvent, Void> {
+
+    private static final Logger LOGGER = LogManager.getLogger(DynamoItemMapper.class);
 
     private final Consumer<Object> discardConsumer;
 
@@ -37,6 +42,7 @@ public abstract class DynamoDBStreamHandler<T> implements RequestHandler<Dynamod
             StreamRecord streamRecord = record.getDynamodb();
             this.resolverConsumer(record).accept(streamRecord);
         } catch (Exception e) {
+            LOGGER.error(e);
             discardConsumer.accept(record);
         }
     }
